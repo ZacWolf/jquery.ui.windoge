@@ -1,4 +1,5 @@
-jquery.ui.windows
+jquery.ui.windoge
 =================
 
-Add windows to your UI.  Windows with maximize/restore minimize capabilities.  Minimizes into an icon dock.
+Add windows to your UI.  Windows with maximize/restore/minimize capabilities.
+Minimizes the windows into an icon dock.
