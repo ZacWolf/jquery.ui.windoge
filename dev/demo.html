@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta charset="utf-8">
+		<meta name="author" content="Zac Morris" />
+		<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1">
+		<meta name="msapplication-config" content="none" />
+		<title>Windoge</title>
+
+<!-- Required -->	
+	<!-- http://jquery.org -->
+		<script type='text/javascript' src="http://cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+		<script type='text/javascript' src="http://cdn.jsdelivr.net/jquery.ui/1.11.0/jquery-ui.min.js"></script>
+
+<!-- Optional -->	
+	<!-- http://touchpunch.furf.com/ -->
+		<script type='text/javascript' src="http://cdn.jsdelivr.net/jquery.ui.touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+	<!-- https://github.com/jquery/jquery-mousewheel -->
+		<script type='text/javascript' src="http://cdn.jsdelivr.net/mousewheel/3.1.9/jquery.mousewheel.min.js"></script>
+	<!-- https://github.com/malihu/malihu-custom-scrollbar-plugin -->
+		<script type='text/javascript' src="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.js"></script>
+	<!--[if gte IE 9]>
+		<style type="text/css">
+			.gradient {
+				filter:none;
+			}
+		</style>
+	<![endif]-->
+		<link ref="stylesheet" type="text/css" charset="utf-8" href="http://cdn.jsdelivr.net/normalize/3.0.2/normalize.min.css" />
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css" />
+
+<!-- Windoge -->
+		<script src="jquery.ui.windoge.min.js"></script>	
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="jquery.ui.windoge.min.css">
+
+<!-- Demo Page -->
+		<style>
+			body{/*for the demo page only*/
+				background-image:url('background.png');
+				background-repeat: no-repeat;
+				background-position:left top;
+				background-origin:content-box;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				font-family:'Comic Sans MS',cursive;
+			}
+		</style>
+
+	</head>
+	<body>
+		<script>
+var		win1,win2		
+			$( document ).ready(
+				function(){
+					win1 = new winDoge({'header':'Windoge 1','style':{'top':'75px','left':'75px','background-color':'#ecc75a'}});
+					win2 = new winDoge({'header':'Windoge 2','winlogo':'minimized-icon2.png','winlogoshow':false,'style':{'top':'100px','left':'100px','background-color':'#e4d9a6'}});
+
+					$('.windogemiddle')//[Optional]Replace all the main "content" window area with the mCustomScrollbar
+						.mCustomScrollbar({
+							theme:'dark-2'
+							,autoHideScrollbar:false
+							,alwaysShowScrollbar:0
+							,scrollInertia: 100
+							,autoDraggerLength: true
+							,scrollButtons:{enable:true}
+							,advanced:{updateOnContentResize:true}
+							,mouseWheel:{ enable: true, deltaFactor: 25 }
+							,keyboard:{ enable: true }
+						});
+
+					$(win1)	.window()
+							.window("generateLoremIpsom",10)
+							.window("setStatusMsg","Test of the <b><font color='red'>status</font></b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg.");
+
+					$(win2)	.window()
+							.window("generateLoremIpsom",20)
+							.window("setStatusMsg","Test",7000);
+				}
+			)
+		</script>
+	</body>
+</html>
