@@ -40,13 +40,13 @@
 	left:2px;
 	height:100px;
 	width:100px;
-	-webkit-filter:drop-shadow(5px 5px 5px #000000);
-	-ms-filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=5, OffY=5, Color='#000000' enabled=1 positive=1)
+	-webkit-filter:drop-shadow(5px 5px 5px rgba(0,0,0,.5));
+	-ms-filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=5, OffY=5, Color='rgba(0,0,0,.5)' enabled=1 positive=1)
 				progid:DXImageTransform.Microsoft.Blur(pixelradius=5);
-	filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=5, OffY=5, Color='#000000' enabled=1 positive=1)
+	filter: progid:DXImageTransform.Microsoft.Dropshadow(OffX=5, OffY=5, Color='rgba(0,0,0,.5)' enabled=1 positive=1)
 			progid:DXImageTransform.Microsoft.Blur(pixelradius=5);
-	filter: url('data:image/svg+xml;utf8,<svg height="0" xmlns="http://www.w3.org/2000/svg"><filter id="dropshadow"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="5" dy="5" result="offsetblur"/><feFlood flood-color="#b18b39"/><feComposite in2="offsetblur" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></svg>"');
-	filter:drop-shadow(5px 5px 5px #000000);
+	filter: url('data:image/svg+xml;utf8,<svg height="0" xmlns="http://www.w3.org/2000/svg"><filter id="dropshadow"><feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dx="5" dy="5" result="offsetblur"/><feFlood flood-color="rgba(0,0,0,.5)"/><feComposite in2="offsetblur" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></svg>"');
+	filter:drop-shadow(5px 5px 5px rgba(0,0,0,.5));
 }
 .windogebar{
 	border-bottom:1px solid rgba(0, 0, 0, .8);
@@ -59,7 +59,6 @@
 }
 .windogebar .header{
 	padding-left:105px;
-	font-family:'Comic Sans MS',cursive;
 	font-weight:bold;
 	font-size:20px;
 }
@@ -99,11 +98,12 @@
 	overflow:hidden;
 }
 .windogecontent{
-	margin-left: 110px;
-	margin-right: 10px;
-}
-.windogecontent.nologo{
-	margin-left: 10px;
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	overflow:hidden;
 }
 .windogestatus{
 	position:absolute;

@@ -9,7 +9,8 @@
 * Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 */
 var	winDoge = function(options){
-var		privatemethods	=
+var		privatefunctions	=
+//Start Private Function
 {		_getAttributes: function(el) {
 var			attributes = {}; 
 			if( el.length ) {
@@ -71,103 +72,118 @@ var			h			=	resize_o.top - windoge_o.top
 				windoge.height(h);
 		}
 		,_maxwindoge:
-			function(windoge,maxicon){
-var				self		=	this;
+			function(self,maxicon){
 var 			restore		=	
-					function(){
+					function(event,ui){
 						maxicon
 							.removeClass('restore')
 							.addClass('maximize')
-							.one('mouseup',maximize)
-						windoge
+							.one('click',maximize)
+						self.windoge
 							.find('.windogebar')
-							.css('cursor','move')
-						windoge
+								.css('cursor','move')
+							.end()
 							.draggable('enable')
 							.removeClass('maximized')
 							.css(windoge.data('origStyle'))
 							.data('windogestate',0)
-							.data('onmaxrestore')(windoge.data('origWidth'),windoge.data('origHeight'));
+						while (self.customevents.one.maxrestore.length)
+							self.customevents.one.maxrestore.shift().call(this('origWidth'),windoge.data('origHeight'));
+						$(self.customevents.on.maxrestore).each(function(){this.call(this('origWidth'),windoge.data('origHeight'));});
 					}
 var 			maximize	=
-					function(){
+					function(event,ui){
 						maxicon
 							.removeClass('maximize')
 							.addClass('restore')
-							.one('mouseup',restore);
-						windoge
+							.one('click',restore)
+						self.windoge
 							.find('.windogebar')
-							.css('cursor','auto')
-						windoge
-							.draggable('enable')
-							.data('origWidth',windoge.width())
-							.data('origHeight',windoge.height())
+								.css('cursor','auto')
+							.end()
+							.draggable('disable')
+							.data('origWidth',self.windoge.width())
+							.data('origHeight',self.windoge.height())
 							.data('origStyle',
-									privatemethods._getdiffs(
-										privatemethods._copyComputedCSS(windoge)
-										,privatemethods._copyComputedCSS(windoge.addClass('maximized'))
+									privatefunctions._getdiffs(
+										privatefunctions._copyComputedCSS(self.windoge)
+										,privatefunctions._copyComputedCSS(self.windoge.addClass('maximized'))
 									)
 							)
 							.data('windogestate',1)
-							.data('onmaximize')()
+							while (self.customevents.one.maximize.length)
+								self.customevents.one.maximize.shift().call();
+							$(self.customevents.on.maximize).each(this);
 					}
-				maxicon.one('mouseup',maximize);
+				maxicon.one('click',maximize);
 			}
-		,_minwindoge:function(windoge,minicon) {
+		,_minwindoge:function(self,minicon) {
 var			restore		=	
-				function(){
-					windoge.fadeIn(800)
+				function(event,ui){
+					self.windoge.fadeIn(800)
 						.data('windogestate',0)
-					$('#windoge-minimizedock > #'+windoge.attr('id')+'-min')
+					$('#windoge-minimizedock > #'+self.windoge.attr('id')+'-min')
 						.effect(
 							"transfer"
-							,{ to: windoge, className: "ui-effects-transfer" }
+							,{ to: self.windoge, className: "ui-effects-transfer" }
 							,400
-							,windoge.data('onminrestore')
+							,function(){
+								while (self.customevents.one.minrestore.length)
+									self.customevents.one.minrestore.shift().call();
+								$(self.customevents.on.minrestore).each(this);
+							}
 						)
 						.remove();
 				}
 var			minimize	=
-				function(){
-					$('#windoge-minimizedock').append("<img id='"+windoge.attr('id')+"-min' class='minimizedlogo' />");
-					$('#'+windoge.attr('id')+'-min').attr('src',windoge.data('winlogo'));
-					$('#windoge-minimizedock > #'+windoge.attr('id')+'-min')
+				function(event,ui){
+					$('#windoge-minimizedock').append("<img id='"+self.windoge.attr('id')+"-min' class='minimizedlogo' />");
+					$('#'+self.windoge.attr('id')+'-min').attr('src',self.windoge.data('winlogo'));
+					$('#windoge-minimizedock > #'+self.windoge.attr('id')+'-min')
 						.show()
 						.one('click',restore)
-					windoge.effect(
+					self.windoge.effect(
 							"transfer"
-							,{ to: '#windoge-minimizedock > #'+windoge.attr('id')+'-min', className: "ui-effects-transfer" }
+							,{ to: '#windoge-minimizedock > #'+self.windoge.attr('id')+'-min', className: "ui-effects-transfer" }
 							,400
-							,windoge.data('onminimize')
+							,function(){
+								while (self.customevents.one.minimize.length)
+									self.customevents.one.minimize.shift().call();
+								$(self.customevents.on.minimize).each(this);
+							}
 						)
 						.hide()
 						.data('windogestate',-1);
 				}
-			minicon.on('mouseup',minimize);
+			minicon.on('click',minimize);
 		}
 		,_loadContent: function(url,callback){
 
 		}
-}
+}//End Private Function
+//Start Public Values/Functions
 var		self			=	this;
 		options			=	$.extend(true,{},this._defaults,options);
 		
 		if ($('#windoge-pane').length==0)
 			$("<div id='windoge-pane' class='ui-front'><div id='windoge-minimizedock'></div></div>").appendTo($('body'));
 		
-		this.windoge 	=	$('<div class="windoge" cellspacing=0 cellpadding=0></div>');
+		this.windoge 	=	$('<div class="windoge"></div>');
 		
 		if (options.id)//assign the ID based on the one passed via ptions
 			this.windoge.attr('id',options.id);
 		else //If the user didn't specify an ID then use a generated one
 			this.windoge.uniqueId();
+		
 		$.each(options,function(attr,val){
-			if (attr!=="style")
+			if (attr.toLowerCase()==="on" && typeof attr === "object"){
+				$.each(attr,self.on);
+			} else if (attr!=="style" && attr!=="contentdiv")
 				self.windoge.data(attr,val);
 		})
-var		id		=	this.windoge.attr('id');
-var		topbar	=	$(	'<div id="'+id+'topbar" class="windogebar">'+
-							'<span id="'+id+'barheader" class="header'+(options.winlogoshow?'':' nologo')+'">'
+		this.id		=	this.windoge.attr('id');
+var		topbar	=	$(	'<div id="'+this.id+'topbar" class="windogebar">'+
+							'<span id="'+this.id+'barheader" class="header'+(options.winlogoshow?'':' nologo')+'">'
 								+options.header+
 							'</span>'+
 							'<div class="icons">'+
@@ -176,17 +192,15 @@ var		topbar	=	$(	'<div id="'+id+'topbar" class="windogebar">'+
 							'</div>'+
 						'</div>')
 						.appendTo(this.windoge);
-var		bttmbar	=	$(	'<div id='+id+'bottombar" class="windogestatus">'+
-							'<div id="'+id+'status" class="statusmsg"></div>'+
+var		bttmbar	=	$(	'<div id='+this.id+'bottombar" class="windogestatus">'+
+							'<div id="'+this.id+'status" class="statusmsg"></div>'+
 							'<div class="resizeicon"></div>'+
 						'</div>')
 						.appendTo(this.windoge);		
-var		content	=	$(	'<div id="'+id+'middle" class="windogemiddle">'+
-							'<div id="'+id+'middlecontent" class="windogecontent'+(options.winlogoshow?'':' nologo')+'"></div>'+
-						'</div>')
+var		middle	=	$(	'<div id="'+this.id+'middle" class="windogemiddle"></div>')
 						.appendTo(this.windoge)
 var		winlogo	=	(options.winlogoshow
-					?$(	'<img id="'+id+'logo" class="logo" src="'+options.winlogo+'" />')
+					?$(	'<img id="'+this.id+'logo" class="logo" src="'+options.winlogo+'" />')
 						.appendTo(this.windoge)
 					:""
 					)	;
@@ -200,17 +214,15 @@ var		winlogo	=	(options.winlogoshow
 						,containment:'window'
 						,scroll:false
 						,handle:$('.windogebar')
+						,stack: ".windoge"
 						})
-			.on('mousedown',function(){
-				$(this).parent().append($(this));
-			})
 			.find('.windogebar .icon')
 				.each(
 					function(){
 						if ($(this).hasClass('maximize'))
-							privatemethods._maxwindoge(self.windoge,$(this));
+							privatefunctions._maxwindoge(self,$(this));
 						else if ($(this).hasClass('minimize'))
-							privatemethods._minwindoge(self.windoge,$(this));
+							privatefunctions._minwindoge(self,$(this));
 					}
 				)
 			.end()
@@ -218,36 +230,103 @@ var		winlogo	=	(options.winlogoshow
 				.each(
 					function(){
 						$(this).draggable({
-							drag:privatemethods._onresizedrag
+							drag:privatefunctions._onresizedrag
 							,helper:"clone"
 							,opacity:0.1
 						});
 					}
 				)
-			.end()
-			.find('.windogecontent')
-				.on('mousedown',function(){
-					self.windoge
-						.parent()
-						.append(self.windoge)
-				})
-		content.css({'top':topbar.height(),'bottom':bttmbar.outerHeight()});
+		middle.css({'top':topbar.outerHeight()+3,'bottom':bttmbar.outerHeight()});
+		
+		if (options.contentdiv){
+var			contentdiv	=	$(options.contentdiv).detach();
+			contentdiv.addClass('windogecontent')
+			middle.append(contentdiv);
+		}
 }
 winDoge.prototype	=	{
 	windoge:undefined
+	,customevents:{
+		'on':{	'maximize':[]
+				,'maxrestore':[]
+				,'minimize':[]
+				,'minrestore':[]
+			}
+		,'one':{'maximize':[]
+				,'maxrestore':[]
+				,'minimize':[]
+				,'minrestore':[]
+			}
+	}
+	,id:undefined
 	,_defaults:{'winlogo':'minimized-icon.png'
 				,'winlogoshow':true
-				,'onmaximize':function(event,data){}
-				,'onmaxrestore':function(event,data){}
-				,'onminimize':function(event,data){}
-				,'onminrestore':function(event,data){}
 				,'style':{'width':'640px'
 					 	 ,'height':'480px'
 						 ,'min-width':'350px'
 						 ,'min-height':'200px'
 						 }
 	}
-	
+	,on: function(eventtype,callback){
+		if (typeof eventtype === "undefined" 
+			|| typeof eventtype !== "string"
+			|| typeof callback != "function"
+			)
+			return;
+var		self	=	this;
+		switch(eventtype){
+			case "maximize":
+				self.customevents.on.maximize.push(callback);
+				return self;
+			case "minimize":
+				self.customevents.on.minimize.push(callback);
+				return self;
+			case "maxrestore":
+				self.customevents.on.maxrestore.push(callback);
+				return self;
+			case "minrestore":
+				self.customevents.on.minrestore.push(callback);
+				return self;
+		}
+		this.windoge.on(eventtype,callback);
+		return this;
+	}
+	,one: function(eventtype,callback){
+		if (typeof eventtype === "undefined" 
+			|| typeof eventtype !== "string"
+			|| typeof callback != "function"
+			)
+			return;
+var		self	=	this;
+		switch(eventtype){
+			case "maximize":
+				self.customevents.one.maximize.push(callback);
+				return self;
+			case "minimize":
+				self.customevents.one.minimize.push(callback);
+				return self;
+			case "maxrestore":
+				self.customevents.one.maxrestore.push(callback);
+				return self;
+			case "minrestore":
+				self.customevents.one.minrestore.push(callback);
+				return self;
+		}
+		this.windoge.one(eventtype,callback);
+		return this;
+	}
+	,minimize: function(callback){
+		this.windoge.find(".minimize").click();
+		if (typeof callback === "function")
+			callback();
+		return this;
+	}
+	,maximize: function(callback){
+		this.windoge.find(".maximize").click();
+		if (typeof callback === "function")
+			callback();
+		return this;
+	}
 }
 
 $.widget( "winDoge.window", {
@@ -295,9 +374,20 @@ var		self	=	this;
 				.delay(showfor)
 				.fadeOut('fast')
 	}
-});
-$.fn.isOverflowing=
-	function(){
-var		e	=	this[0];
-		return e.scrollHeight>e.clientHeight||e.scrollWidth>e.clientWidth;
+	,on: function(eventtype,callback){
+		this.windoge.on(eventtype,callback);
 	}
+	,one: function(eventtype,callback){
+		this.windoge.on(eventtype,callback);
+	}
+	,minimize: function(callback){
+		this.windoge.find(".minimize").click();
+		if (typeof callback === "function")
+			callback();
+	}
+	,maximize: function(callback){
+		this.windoge.find(".maximize").click();
+		if (typeof callback === "function")
+			callback();
+	}
+});
