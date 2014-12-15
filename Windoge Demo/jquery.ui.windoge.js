@@ -1,13 +1,11 @@
-/*
-* windoge jQuery UI plugin v0.5
-*
-* Adds draggable, resizable, maximizable, and minimizable windows to your site
-*
-* Copyright (c) 2014 Zac Morris
-* https://github.com/ZacWolf/jquery.ui.windogedows
-* http://zacwolf.com
-* Licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
-*/
+/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
+ *
+ * Adds draggable, resizable, maximizable, and minimizable windows to your site
+ *
+ * https://github.com/ZacWolf/jquery.ui.windoge
+ * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
+ * Licensed under GPL-3.0
+ */
 var	winDoge	= function(options){
 var		privatefunctions	=
 	//Start Private Function
@@ -231,6 +229,25 @@ var		winlogo	=	(options.winlogoshow
 						,handle:$('.windogebar')
 						,stack: ".windoge"
 						})
+			.on('click',
+				function(event){
+var					group	=	$.makeArray($('.windoge'))
+									.sort(
+										function(a, b) {
+											return (parseInt($(a).css("zIndex"), 10) || 0) - (parseInt($(b).css("zIndex"), 10) || 0);
+										}
+									);
+					if (!group.length) return;
+var					min		=	parseInt($(group[0]).css("zIndex"), 10) || 0;
+					$(group)
+						.each(
+							function(i) {
+								$(this).css("zIndex", min + i);
+							}
+						);
+					$(this).css("zIndex", (min + group.length));
+				}
+			)
 			.find('.windogebar .icon')
 				.each(
 					function(){

@@ -32,8 +32,8 @@
 		<link rel="stylesheet" type="text/css" charset="utf-8" href="http://cdn.jsdelivr.net/jquery.mcustomscrollbar/3.0.6/jquery.mCustomScrollbar.min.css" />
 
 <!-- Windoge -->
-		<script src="jquery.ui.windoge.min.js"></script>	
-		<link rel="stylesheet" type="text/css" charset="utf-8" href="jquery.ui.windoge.min.css">
+		<script src="jquery.ui.windoge.js"></script>	
+		<link rel="stylesheet" type="text/css" charset="utf-8" href="jquery.ui.windoge.css">
 
 <!-- Demo Page -->
 		<style>
@@ -47,18 +47,41 @@
 				-o-background-size: cover;
 				background-size: cover;
 				font-family:'Comic Sans MS',cursive;
+				overflow:hidden;
 			}
 		</style>
 
 	</head>
 	<body>
 		<script>
-var		win1,win2		
+var		win1,win2;
 			$( document ).ready(
 				function(){
-					win1 = new winDoge({'header':'Windoge 1','style':{'top':'75px','left':'75px','background-color':'#ecc75a'}});
-					win2 = new winDoge({'header':'Windoge 2','winlogo':'minimized-icon2.png','winlogoshow':false,'style':{'top':'100px','left':'100px','background-color':'#e4d9a6'}});
-
+					win1 = new winDoge(
+							{'header':'Windoge1'
+							,'winlogo':'minimized-icon.png'
+							,'winlogoshow':true
+							,'winlogodropshadow':true
+							,'windropshadow':true
+							,'style':{	'min-width':'300px'
+										,'min-height':'200px'
+										,'top':'10px'
+										,'left':'10px'
+										,'background-color':'rgba(234,220,142,.8)'
+									 }
+							});
+					win2 = new winDoge(
+								{'header':'Windoge2'
+								,'winlogo':'minimized-icon2.png'
+								,'winlogoshow':false
+								,'windropshadow':false
+								,'style':{	'min-width':'400px'
+											,'min-height':'300px'
+											,'top':'50px'
+											,'left':'50px'
+											,'background-color':'#e4d9a6'
+										 }
+								});
 					$('.windogemiddle')//[Optional]Replace all the main "content" window area with the mCustomScrollbar
 						.mCustomScrollbar({
 							theme:'dark-2'

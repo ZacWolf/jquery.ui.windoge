@@ -1,0 +1,26 @@
+{
+  "name": "jquery.ui.windoge",
+  "version": "0.1.0",
+  "author": {
+    "name": "Zac Morris",
+    "email": "zac@zacwolf.com",
+    "url": "http://www.zacwolf.com"
+  },
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZacWolf/jquery.ui.windoge"
+  },
+  "bugs": {
+    "url": "https://github.com/ZacWolf/jquery.ui.windoge/issues",
+    "email": "zac@zacwolf.com"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-css": "^0.5.4",
+    "grunt-string-replace": "^1.0.0"
+  }
+}
