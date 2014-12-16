@@ -126,22 +126,18 @@
 	margin:0;
 	border: 1px solid #000000;
 	background-color:#dddddd;
-	/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
-	/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+	/* if you want to apply a background 
+	image to the windows this is how*/
+	/*
+	background-image:url('background.jpg');
+	background-repeat: no-repeat;
+	background-position:left top;
+	background-origin:content-box;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	*/
 }
 .windoge .logo{
 	position:absolute;
@@ -158,14 +154,7 @@
 	width:100%;
 	background-color:rgba(0,0,0,.1);
 	cursor:move;
-	/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+	/*background:#E6CB05 url(/banner-back.png) no-repeat left top;*/
 }
 .windogebar .header{
 	padding-left:105px;
@@ -275,31 +264,20 @@
 	border:1px dotted black;
 }
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* --------------------------------------------
+CSS Dock
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+Version: 	2.0
+Author:		Michael Hüneburg
+URL: 		http://michaelhue.com/cssdock
+Copyright: 	(c)2011 by Michael Hüneburg
+License: 	MIT License (see LICENSE file)
+----------------------------------------------- */
+
+/* @group Animation */
+/* Defines the bounce animation. Note that only the up motion is defined as
+   the down motion is created automatically using
+   `animation-direction: alternate;`. */
 @-webkit-keyframes bounce {
 	  0% { -webkit-transform: translateY(0); }
 	100% { -webkit-transform: translateY(-20px); }
@@ -309,23 +287,9 @@
 	  0% { -moz-transform: translateY(0); }
 	100% { -moz-transform: translateY(-20px); }
 }
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @end */
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @group Dock */
 .dock {
 	position: absolute;
 	bottom: 0;
@@ -343,14 +307,8 @@
 	background: url(dock-m.png) repeat-x bottom;
 }
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* Creates the left and right end caps of the dock. You may not need these
+   when creating your own dock. */
 .dock ul:before, .dock ul:after {
 	content: " ";
 	position: absolute;
@@ -368,31 +326,12 @@
 	right: -31px;
 	background: url(dock-r.png) no-repeat right bottom;
 }
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @end */
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @group Items */
+/* Defines a dock item. Note the `-webkit-box-reflect` property which creates
+   a nice reflection below the item. The gradient is a mask in order to
+   exlcude the status indicator from the reflection. */
 .dock li {
 	display: inline-block;
 	position: relative;
@@ -413,27 +352,15 @@
 	cursor: default;
 	outline: none;
 }
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* Applies the bounce animation to the targeted dock item.  */
 .dock li:target a {
 	-webkit-animation: bounce .3s 6 alternate ease-out;
 	-moz-animation: bounce .3s 6 alternate ease-out;
 }
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* Generates the status indicator. Looks complex but most of this stuff is
+   just repetition with different vendor prefixes. Isn't it fun to write
+   everything three times? *sigh* */
 .dock li:after {
 	content: " ";
 	position: absolute;
@@ -466,43 +393,17 @@
 	-o-transition: opacity .5s;
 }
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* Displays the status indicator of the targeted dock item. */
 .dock li:target:after {
 	visibility: visible;
 	opacity: 1;
 }
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @end */
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @group Label */
+/* This is just a wrapper in order to center the actual label horizontally.
+   You may need to adjust the width negative margin if you have really long
+   labels. */
 .dock em {
 	position: absolute;
 	top: -34px;
@@ -513,14 +414,7 @@
 	text-align: center;
 }
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* Generates the little arrow at the bottom of the label. */
 .dock em:after {
 	content: " ";
 	position: absolute;
@@ -535,14 +429,7 @@
 	border-bottom: none;
 }
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* This is the actual label. */
 .dock em span {
 	display: inline-block;
 	padding: 5px 12px;
@@ -561,31 +448,12 @@
 .dock li:hover em, .dock li a:focus em {
 	display: block;
 }
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @end */
 
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @group Icon */
+/* Sets the icons to a smaller width so they can be enlarged and applies
+   transitions for a smooth animation. Make sure to adjust the width so it
+   matches your images. */
 .dock img {
 	width: 86px;
 	height: auto;
@@ -602,11 +470,4 @@
 .dock li:active img {
 	opacity: .9;
 }
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-15
- *
- * Adds draggable, resizable, maximizable, and minimizable windows to your site
- *
- * https://github.com/ZacWolf/jquery.ui.windoge
- * Copyright (c) 2014 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
- * Licensed under GPL-3.0
- */
+/* @end */

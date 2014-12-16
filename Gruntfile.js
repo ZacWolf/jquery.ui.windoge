@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 		},
 		options: {
 		  replacements: [{
-			pattern: /\/\*(.|[\r\n])*?\*\//g,
+			pattern: /^\/\*(.|[\r\n])*?\*\//g,
 			replacement: '<%= config.banner %>'
 		  }]
 		}
