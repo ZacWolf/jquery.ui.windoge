@@ -12,8 +12,8 @@ bower install zacwolf/jquery.ui.windoge
 A full demo is located in the "Windoge Demo" folder.  
 Open the index.html file to see the Windoge demo.
 
+=============================
 ####(Attribution) CSS Dock v2
-
 The dock that this addon uses is "CSS Dock v2" by Michael Hüneburg 
 http://michaelhue.com/cssdock/
 
