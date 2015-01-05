@@ -62,19 +62,23 @@ var		win1,win2;
 							,'winlogo':'minimized-icon.png'
 							,'winlogoshow':true
 							,'winlogodropshadow':true
+							,'winroundedcorners':5
 							,'windropshadow':true
+							,'winpersistposition':true
 							,'style':{	'min-width':'300px'
 										,'min-height':'200px'
 										,'top':'10px'
 										,'left':'10px'
 										,'background-color':'rgba(234,220,142,.8)'
 									 }
+							,'contentdiv':'#win1content'
 							});
 					win2 = new winDoge(
 								{'header':'Windoge2'
 								,'winlogo':'minimized-icon2.png'
 								,'winlogoshow':false
 								,'windropshadow':false
+								,'winpersistposition':true
 								,'style':{	'min-width':'400px'
 											,'min-height':'300px'
 											,'top':'50px'
@@ -82,7 +86,7 @@ var		win1,win2;
 											,'background-color':'#e4d9a6'
 										 }
 								});
-					$('.windogemiddle')//[Optional]Replace all the main "content" window area with the mCustomScrollbar
+					$('.windogecontent')//[Optional]Replace all the main "content" window area with the mCustomScrollbar
 						.mCustomScrollbar({
 							theme:'dark-2'
 							,autoHideScrollbar:false
@@ -97,13 +101,18 @@ var		win1,win2;
 
 					$(win1)	.window()
 							.window("generateLoremIpsom",10)
-							.window("setStatusMsg","Test of the <b><font color='red'>status</font></b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg.");
+							.window("setStatusMsg","Test of the <b><font color='red'>status</font></b> msg that stays until another is set. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg. Test of the <b>status</b> msg.");
 
 					$(win2)	.window()
 							.window("generateLoremIpsom",20)
-							.window("setStatusMsg","Test",7000);
+							.window("setStatusMsg","Test of a status msg that fades after 7 seconds",7000);
 				}
 			)
 		</script>
+		<div style="display:none;">
+			<div id="win1content">
+				<div class='windogecontentinner' style="margin-left:110px"></div>
+			</div>
+		</div>
 	</body>
 </html>

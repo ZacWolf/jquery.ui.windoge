@@ -1,4 +1,4 @@
-/*! jquery.ui.windoge - v0.1.0 - 2014-12-18
+/*! jquery.ui.windoge - v0.1.0 - 2015-01-05
  *
  * Adds draggable, resizable, maximizable, and minimizable windows to your site
  *
@@ -69,7 +69,7 @@ var		privatefunctions	=
 								.removeClass('restore')
 								.addClass('maximize')
 								.one('click',maximize)
-							self.windoge
+							self.winDiv
 								.find('.windogebar')
 									.css('cursor','move')
 								.end()
@@ -78,7 +78,7 @@ var		privatefunctions	=
 								.end()
 								.draggable('enable')
 								.removeClass('maximized')
-								.css(self.windoge.data('origStyle'))
+								.css(self.winDiv.data('origStyle'))
 								.data('winstate',0)
 							
 							self._triggerCustomOnEvents('maxrestore');
@@ -92,7 +92,7 @@ var		privatefunctions	=
 								.removeClass('maximize')
 								.addClass('restore')
 								.one('click',restore)
-							self.windoge
+							self.winDiv
 								.find('.windogebar')
 									.css('cursor','auto')
 								.end()
@@ -100,12 +100,12 @@ var		privatefunctions	=
 									.hide()
 								.end()
 								.draggable('disable')
-								.data('origWidth',self.windoge.width())
-								.data('origHeight',self.windoge.height())
+								.data('origWidth',self.winDiv.width())
+								.data('origHeight',self.winDiv.height())
 								.data('origStyle',
 										privatefunctions._getdiffs(
-											privatefunctions._copyComputedCSS(self.windoge)
-											,privatefunctions._copyComputedCSS(self.windoge.addClass('maximized'))
+											privatefunctions._copyComputedCSS(self.winDiv)
+											,privatefunctions._copyComputedCSS(self.winDiv.addClass('maximized'))
 										)
 								)
 								self.options.winstate=1;
@@ -116,44 +116,75 @@ var		privatefunctions	=
 						}
 					maxicon.one('click',maximize);
 				}
-			,_minwindoge:function(minicon) {
-	var			restore		=	
-					function(event,ui){
-						self.windoge.fadeIn(800);
-						self.options.winstate=0;
-						jQuery('#'+self.id+'-min')
-							.effect(
-								"transfer"
-								,{ to: self.windoge, className: "ui-effects-transfer" }
-								,400
-								,function(){
-									self._triggerCustomOnEvents('minrestore');
-									self._triggerCustomOneEvents('minrestore');
-								}
-							)
-							.remove();
-						self._testSize(self);
-						minicon.one('click',minimize);
+			,_minwindoge:
+				function(minicon) {
+var					restore		=	
+						function(event,ui){
+							self.winDiv.fadeIn(800);
+							self.options.winstate=0;
+							jQuery('#'+self.id+'-min')
+								.effect(
+									"transfer"
+									,{ to: self.winDiv, className: "ui-effects-transfer" }
+									,400
+									,function(){
+										self._triggerCustomOnEvents('minrestore');
+										self._triggerCustomOneEvents('minrestore');
+									}
+								)
+								.remove();
+							self._testSize(self);
+							minicon.one('click',minimize);
+						}
+var					minimize	=
+						function(event,ui){
+							jQuery('#windoge-minimizedock ul').append('<li id="'+self.id+'-min"><a><em><span>'+self.options.header+'</span></em><img src="'+self.options.winlogo+'" /></a></li>');
+							jQuery('#'+self.id+'-min img').one('click',restore)
+							self.winDiv
+								.effect(
+									"transfer"
+									,{ to: '#'+self.id+'-min img', className: "ui-effects-transfer" }
+									,400
+									,function(){
+										self._triggerCustomOnEvents('minimize');
+										self._triggerCustomOneEvents('minimize');
+									}
+								)
+								.hide()
+							self.options.winstate=-1;
+						}
+					minicon.one('click',minimize);
+				}
+			,_createCookie: 
+				function(name,value,days) {
+					if (!navigator.cookieEnabled)
+						return false;
+					if (days) {
+						var date = new Date();
+						date.setTime(date.getTime()+(days*24*60*60*1000));
+						var expires = "; expires="+date.toGMTString();
 					}
-	var			minimize	=
-					function(event,ui){
-						jQuery('#windoge-minimizedock ul').append('<li id="'+self.id+'-min"><a><em><span>'+self.options.header+'</span></em><img src="'+self.options.winlogo+'" /></a></li>');
-						jQuery('#'+self.id+'-min img').one('click',restore)
-						self.windoge
-							.effect(
-								"transfer"
-								,{ to: '#'+self.id+'-min img', className: "ui-effects-transfer" }
-								,400
-								,function(){
-									self._triggerCustomOnEvents('minimize');
-									self._triggerCustomOneEvents('minimize');
-								}
-							)
-							.hide()
-						self.options.winstate=-1;
+					else var expires = "; expires=Tue, 19 Jan 2038 03:14:07 UTC";//End of the Unix Epoch for now
+					document.cookie = name+"="+value+expires+";";
+					return true;
+				}
+			,_readCookie: 
+				function(name) {
+					if (!navigator.cookieEnabled)
+						return null;
+				var	nameEQ	=	name + "=";
+				var	ca		=	document.cookie.split(';');
+					for(var i=0;i < ca.length;i++) {
+				var		c	=	ca[i];
+						while (c.charAt(0)==' ') c = c.substring(1,c.length);
+						if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
 					}
-				minicon.one('click',minimize);
-			}
+					return null;
+				}
+			,_eraseCookie:
+				function(name) {
+					_createCookie(name,"",-1);
+				}
 	}//End Private Function
 
 //Start Public Values/Functions
@@ -174,27 +205,27 @@ var		privatefunctions	=
 												 )
 												:5;
 		
-		self.windoge 	=	jQuery('<div class="windoge'
+		self.winDiv 	=	jQuery('<div class="windoge'
 							+(self.options.windropshadow?' windropshadow':'')
 							+(self.options.winroundedcorners?' rounded'+self.options.winroundedcorners+' topleft topright bottomleft bottomright':'')
 							+'"></div>');
 		
-		if (self.options.id)//assign the ID based on the one passed via ptions
-			self.windoge.attr('id',self.options.id);
+		if (self.options.id)//assign the ID based on the one passed via options
+			self.winDiv.attr('id',self.options.id);
 		else //If the user didn't specify an ID then use a generated one
-			self.windoge.uniqueId();
+			self.winDiv.uniqueId();
 		
 		jQuery.each(self.options,function(attr,val){
 			if (attr.toLowerCase()==="style" && jQuery.type(val)==="object"){
-				self.windoge.css(self.options.style);
+				self.winDiv.css(self.options.style);
 				self.options.style	=	undefined;
 			} else 	if (attr.toLowerCase()!=="on" 
 						&& attr.toLowerCase()!=="one" 
 						&& attr.toLowerCase()!=="contentdiv"
 						) 
-				self.windoge.data(attr,val);
+				self.winDiv.data(attr,val);
 		})
-		self.id	=	self.windoge.attr('id');
+		self.id	=	self.winDiv.attr('id');
 var		topbar	=	jQuery(	'<div id="'+self.id+'topbar" class="windogebar'+(self.options.winroundedcorners?' rounded'+self.options.winroundedcorners+' topleft topright':'')+'">'+
 							'<span id="'+self.id+'barheader" class="header'+(self.options.winlogoshow?'':' nologo')+'">'
 								+self.options.header+
@@ -204,20 +235,20 @@ var		topbar	=	jQuery(	'<div id="'+self.id+'topbar" class="windogebar'+(self.opti
 								'<div class="icon maximize"></div>'+
 							'</div>'+
 						'</div>')
-						.appendTo(self.windoge);
+						.appendTo(self.winDiv);
 var		bttmbar	=	jQuery(	'<div id='+self.id+'bottombar" class="windogestatus'+(self.options.winroundedcorners?' rounded bottomleft bottomright':'')+'">'+
 							'<div id="'+self.id+'status" class="statusmsg"></div>'+
 							'<div class="resizeicon"></div>'+
 						'</div>')
-						.appendTo(self.windoge);		
+						.appendTo(self.winDiv);		
 var		middle	=	jQuery(	'<div id="'+self.id+'middle" class="windogemiddle"></div>')
-						.appendTo(self.windoge)
+						.appendTo(self.winDiv)
 var		winlogo	=	(self.options.winlogoshow
 					?jQuery(	'<img id="'+self.id+'logo" class="logo'+(self.options.winlogodropshadow?' dropshadow':'')+'" src="'+self.options.winlogo+'" />')
-						.appendTo(self.windoge)
+						.appendTo(self.winDiv)
 					:""
 					)	;
-		self.windoge
+		self.winDiv
 			.data('resizestart',{})
 			.data('resizewidth',0)
 			.data('resideheight',0)
@@ -227,6 +258,12 @@ var		winlogo	=	(self.options.winlogoshow
 						,scroll:false
 						,handle:jQuery('.windogebar')
 						,stack: ".windoge"
+						,stop:
+							function(event,ui){
+								if (self.options.winpersistposition){
+									privatefunctions._createCookie("windoge-"+self.id+"-pos","{'top':"+self.winDiv.offset().top+",'left':"+self.winDiv.offset().left+"}");
+								}
+							}
 						})
 			.on('click',
 				function(event){
@@ -263,40 +300,69 @@ var					min		=	parseInt(jQuery(group[0]).css("zIndex"), 10) || 0;
 						jQuery(this).draggable({
 							drag:
 								function(event,ui){
-var									windoge_o	=	self.windoge.offset();
+var									windoge_o	=	self.winDiv.offset();
 var									resize_o	=	ui.offset
-var									minw		=	parseInt(self.windoge.css('min-width'));
+var									minw		=	parseInt(self.winDiv.css('min-width'));
 var									w			=	(resize_o.left+jQuery(this).width()) - windoge_o.left
-var									minh		=	parseInt(self.windoge.css('min-height'))
+var									minh		=	parseInt(self.winDiv.css('min-height'))
 var									h			=	resize_o.top - windoge_o.top
 									if (w >= minw)
 										self.width(w);
 									if (h >= minh)
 										self.height(h);
 								}
+							,stop:
+								function(event,ui){
+									if (self.options.winpersistposition){
+										privatefunctions._createCookie("windoge-"+self.id+"-size","{'width':"+self.winDiv.width()+",'height':"+self.winDiv.height()+"}");
+									}
+								}
 							,helper:"clone"
 							,opacity:0.1
 							,containment:'window'
+							,stack: ".windoge"
 						});
 					}
 				)
-		middle.css({'top':topbar.outerHeight()+3,'bottom':bttmbar.outerHeight()});
+		middle.css({'top':topbar.outerHeight(),'bottom':bttmbar.outerHeight()});
 		
 		if (self.options.contentdiv){
 var			contentdiv	=	jQuery(self.options.contentdiv).detach();
-			contentdiv.addClass('windogecontent')
+			if (contentdiv.find('.windogecontent').length==0)
+				contentdiv.addClass('windogecontent')
 			middle.append(contentdiv);
 			self.options.contentdiv	=	undefined;
+		} else {
+			middle.append(jQuery("<div id='"+self.id+"content' class='windogecontent'><div class='windogecontentinner'></div></div>"));
+		}
+		
+		if (self.options.winpersistposition){
+			if (!navigator.cookieEnabled){
+				self.winDiv.setStatusMsg("<span style='color:#888888;font-weight:bold;'>Cookies not allowed, reseting to initial position and size.</span>")
+			} else {
+var				pos,size;
+				eval("pos="+privatefunctions._readCookie("windoge-"+self.id+"-pos"));
+				if (pos!=null)
+					self.winDiv.css(pos);
+				eval("size="+privatefunctions._readCookie("windoge-"+self.id+"-size"));
+				if (size!=null){
+					self.winDiv.width(size.width);
+					self.winDiv.height(size.height);
+				}
+			}
 		}
 }
 winDoge.prototype	=	{
-	windoge:undefined
+	winDiv:undefined
 	,id:undefined
 	,options:{}
 	,_defaults:{'winlogo':'minimized-icon.png'
 				,'winlogoshow':true
+				,'winlogodropshadow':true
 				,'winroundedcorners':'5'
 				,'winstate':0
+				,'winperistposition':false
+				,'winroundedcorners':false
 				,'style':{'width':'640px'
 					 	 ,'height':'480px'
 						 ,'min-width':'350px'
@@ -316,52 +382,50 @@ winDoge.prototype	=	{
 					}
 	}
 	,_testSize://Equivalent to static method
-		function(self){
-var			bw		=	jQuery('body').width();
-var			bh		=	jQuery('body').height();
-var			ell		=	self.windoge.offset().left;
-var			elw		=	self.windoge.width();
-var			elt		=	self.windoge.offset().top;
-var			elh		=	self.windoge.height();
+		function(){
+var			bw		=	jQuery(window).width();
+var			bh		=	jQuery(window).height();
+var			ell		=	this.winDiv.offset().left;
+var			elw		=	this.winDiv.width();
+var			elt		=	this.winDiv.offset().top;
+var			elh		=	this.winDiv.height();
 			if (bw<(ell+elw))
 				if (bw>elw)
-					self.windoge.css("left",(bw-elw)+"px");
+					this.winDiv.css("left",(bw-elw)+"px");
 				else{
-					self.windoge.css("left",0);
-					self.width(bw-1);
+					this.winDiv.css("left",0);
+					this.width(bw-1);
 				}
 				
 			if (bh<(elt+elh))
 				if (bh>elh)
-					self.windoge.css("top",(bh-elh)+"px");
+					this.winDiv.css("top",(bh-elh)+"px");
 				else{
-					self.windoge.css("top",0);
-					self.height(bh-1);
+					this.winDiv.css("top",0);
+					this.height(bh-1);
 				}
 		}
 	,_triggerCustomOnEvents:function(eventtype){
-var		self	=	this;
-		if (jQuery.type(self.options.on[eventtype]) === "function")
-			self.options.on[eventtype].call(self);
-		else if (jQuery.type(self.options.on[eventtype]) === "array")
-			jQuery(self.options.on[eventtype]).each(function(){this.call(self)});
-		return self
+		if (jQuery.type(this.options.on[eventtype]) === "function")
+			this.options.on[eventtype].call(this);
+		else if (jQuery.type(this.options.on[eventtype]) === "array")
+			jQuery(this.options.on[eventtype]).each(function(){this.call(this)});
+		return this
 	}
 	,_triggerCustomOneEvents:function(eventtype){
-var		self	=	this;
-		if (jQuery.type(self.options.one[eventtype]) === "function"){
-			self.options.one[eventtype].call(self);
-			self.options.one[eventtype] = undefined;
-		} else if (jQuery.type(self.options.one[eventtype]) === "array")
-			while (self.options.one[eventtype].length)
-				self.options.one[eventtype].shift().call(self);
-		return self
+		if (jQuery.type(this.options.one[eventtype]) === "function"){
+			this.options.one[eventtype].call(this);
+			this.options.one[eventtype] = undefined;
+		} else if (jQuery.type(this.options.one[eventtype]) === "array")
+			while (this.options.one[eventtype].length)
+				this.options.one[eventtype].shift().call(this);
+		return this
 	}
 	,width:function(w){
 		if (jQuery.type(w)==="undefined")
-			return this.windoge.width();
+			return this.winDiv.width();
 		try{
-			return this.windoge.width(w)
+			return this.winDiv.width(w)
 		} finally {
 			this._triggerCustomOnEvents('resize');
 			this._triggerCustomOneEvents('resize');
@@ -369,19 +433,19 @@ var		self	=	this;
 	}
 	,height:function(h){
 		if (jQuery.type(h)==="undefined")
-			return this.windoge.height();
+			return this.winDiv.height();
 		try{
-			return this.windoge.height(h);
+			return this.winDiv.height(h);
 		} finally {
 			this._triggerCustomOnEvents('resize');
 			this._triggerCustomOneEvents('resize');
 		}
 	}
 	,find: function(selector){
-		return this.windoge.find(selector);
+		return this.winDiv.find(selector);
 	}
 	,end: function(){
-		return this.windoge;
+		return this.winDiv;
 	}
 	,on: function(eventtype,callback){
 		if (jQuery.type(eventtype) === "undefined" 
@@ -389,27 +453,25 @@ var		self	=	this;
 			|| jQuery.type(callback) != "function"
 			)
 			return;
-var		self	=	this;
 		switch(eventtype){
 			case "maximize":
-				self.options.on.maximize.push(callback);
+				this.options.on.maximize.push(callback);
 				break;
 			case "minimize":
-				self.options.on.minimize.push(callback);
+				this.options.on.minimize.push(callback);
 				break;
 			case "maxrestore":
-				self.options.on.maxrestore.push(callback);
+				this.options.on.maxrestore.push(callback);
 				break;
 			case "minrestore":
-				self.options.on.minrestore.push(callback);
+				this.options.on.minrestore.push(callback);
 				break;
 			case "resize":
-				self.options.on.resize.push(callback);
+				this.options.on.resize.push(callback);
 				break;
 			
-			return self;
+			this.winDiv.on(eventtype,callback);
 		}
-		this.windoge.on(eventtype,callback);
 		return this;
 	}
 	,one: function(eventtype,callback){
@@ -418,31 +480,29 @@ var		self	=	this;
 			|| jQuery.type(callback) != "function"
 			)
 			return;
-var		self	=	this;
 		switch(eventtype){
 			case "maximize":
-				self.options.one.maximize.push(callback);
+				this.options.one.maximize.push(callback);
 				break;
 			case "minimize":
-				self.options.one.minimize.push(callback);
+				this.options.one.minimize.push(callback);
 				break;
 			case "maxrestore":
-				self.options.one.maxrestore.push(callback);
+				this.options.one.maxrestore.push(callback);
 				break;
 			case "minrestore":
-				self.options.one.minrestore.push(callback);
+				this.options.one.minrestore.push(callback);
 				break;
 			case "resize":
-				self.options.on.resize.push(callback);
+				this.options.on.resize.push(callback);
 				break;
 			
-			return self;
+			this.winDiv.one(eventtype,callback);
 		}
-		this.windoge.one(eventtype,callback);
 		return this;
 	}
 	,minimize: function(callback){
-		this.windoge.find(".minimize").click();
+		this.winDiv.find(".minimize").click();
 		if (jQuery.type(callback) === "function")
 			callback();
 		return this;
@@ -465,22 +525,39 @@ var		self	=	this;
 			callback();
 		return this;
 	}
+	,setStatusMsg: 
+		function(html,showfor){//If showfor set to 0 or negative shows until the next message is set
+			if (jQuery.type(showfor) === "undefined" || isNaN(showfor))
+				showfor	=	30000;//Default to 30 seconds
+			this.winDiv.find('.statusmsg')
+					.stop( true, true )
+					.fadeOut('fast')
+					.html(html)
+					.fadeIn('fast')
+			if (showfor>0)
+				this.winDiv.find('.statusmsg')
+					.delay(showfor)
+					.fadeOut('fast')
+			return this;
+		}
 }
 
 jQuery.widget( "winDoge.window", {
-	windoge:undefined
+	winDoge:undefined
 	,options: {}
 	,_init: function(){
-		if (jQuery.type(this.windoge) === "undefined")
-			console.log("windoge not initilized");
+		if (jQuery.type(this.winDoge) === "undefined")
+			console.log("winDoge not initilized");
 	}
 	,_create: function() {
 		if (jQuery.type(this.element) != "object" && jQuery.type(this.element[0]) != "winDoge")
-			return;
-		this.windoge	=	this.element[0].windoge;
+			return null;
+		this.winDoge	=	this.element[0];
 	}
 	,findContent:function(){
-		this.windoge.find('.windogecontent');
+		this.winDoge.winDiv.find('.windogecontentinner').length>0
+			return this.winDoge.winDiv.find('.windogecontentinner')
+		return this.winDoge.winDiv.find('.windogecontent');
 	}
 	,generateLoremIpsom: function(paragraphs,callback){
 		if (jQuery.type(paragraphs) === "undefined" || isNaN(paragraphs))
@@ -493,39 +570,70 @@ var		self	=	this;
 			dataType:'text', 
 			async:true,  
 			success:function(data){
-				self.windoge.find('.windogecontent').html(data);
+				self.findContent().html(data);
 				if (jQuery.type(callback) === "function")
 					callback();
 			}
 		});
 	}
 	,setStatusMsg: function(html,showfor){//If showfor set to 0 or negative shows until the next message is set
-		if (jQuery.type(showfor) === "undefined" || isNaN(showfor))
-			showfor	=	30000;//Default to 30 seconds
-		this.windoge.find('.statusmsg')
-				.stop( true, true )
-				.fadeOut('fast')
-				.html(html)
-				.fadeIn('fast')
-		if (showfor>0)
-			this.windoge.find('.statusmsg')
-				.delay(showfor)
-				.fadeOut('fast')
+		this.winDoge.setStatusMsg(html,showfor);
 	}
 	,on: function(eventtype,callback){
-		this.windoge.on(eventtype,callback);
+		this.winDoge.on(eventtype,callback);
 	}
 	,one: function(eventtype,callback){
-		this.windoge.on(eventtype,callback);
+		this.winDoge.one(eventtype,callback);
 	}
 	,minimize: function(callback){
-		this.windoge.find(".minimize").click();
+		this.winDoge.winDiv.find(".minimize").click();
 		if (jQuery.type(callback) === "function")
 			callback();
 	}
 	,maximize: function(callback){
-		this.windoge.find(".maximize").click();
+		this.winDoge.winDiv.find(".maximize").click();
 		if (jQuery.type(callback) === "function")
 			callback();
 	}
 });
+//From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+if (!Object.keys) {
+	Object.keys = (function() {
+		'use strict';
+		var hasOwnProperty = Object.prototype.hasOwnProperty,
+				hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+				dontEnums = [
+					'toString',
+					'toLocaleString',
+					'valueOf',
+					'hasOwnProperty',
+					'isPrototypeOf',
+					'propertyIsEnumerable',
+					'constructor'
+				],
+				dontEnumsLength = dontEnums.length;
+
+		return function(obj) {
+			if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
+				throw new TypeError('Object.keys called on non-object');
+			}
+
+			var result = [], prop, i;
+
+			for (prop in obj) {
+				if (hasOwnProperty.call(obj, prop)) {
+					result.push(prop);
+				}
+			}
+
+			if (hasDontEnumBug) {
+				for (i = 0; i < dontEnumsLength; i++) {
+					if (hasOwnProperty.call(obj, dontEnums[i])) {
+						result.push(dontEnums[i]);
+					}
+				}
+			}
+			return result;
+		};
+	}());
+}
