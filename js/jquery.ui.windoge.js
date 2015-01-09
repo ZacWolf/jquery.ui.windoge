@@ -540,22 +540,6 @@ var			elh		=	this.winDiv.height();
 					.fadeOut('fast')
 			return this;
 		}
-	,loadContent://The URL needs to be the same domain, or support CORS
-		function(contenturl,intoselector,callback){
-			if (contentwindow.currenttopic!==contentID){
-				jQuery.ajax({
-					type:'GET',
-					url:contenturl,
-					dataType:'text',
-					async:true,
-					success:function(data){
-						intoselector.html(data);
-						if (jQuery.type(callback)==="function")
-							callback();
-					}
-				});
-			}
-		}
 }
 
 jQuery.widget( "winDoge.window", {
@@ -575,23 +559,27 @@ jQuery.widget( "winDoge.window", {
 			return this.winDoge.winDiv.find('.windogecontentinner')
 		return this.winDoge.winDiv.find('.windogecontent');
 	}
-	,generateLoremIpsom: function(paragraphs,callback){
-		if (jQuery.type(paragraphs) === "undefined" || isNaN(paragraphs))
-			paragraphs=5;
-		
-var		self	=	this;
-		jQuery.ajax({
-			type:'GET',  
-			url:'http://www.corsproxy.com/loripsum.net/api/'+paragraphs+'/medium/decorate/link/ul/ol/dl/bq/code/headers/',
-			dataType:'text', 
-			async:true,  
-			success:function(data){
-				self.findContent().html(data);
-				if (jQuery.type(callback) === "function")
-					callback();
-			}
-		});
-	}
+	,generateLoremIpsom: 
+		function(paragraphs,callback){
+			if (jQuery.type(paragraphs) === "undefined" || isNaN(paragraphs))
+				paragraphs=5;
+			this.loadContent('http://www.corsproxy.com/loripsum.net/api/'+paragraphs+'/medium/decorate/link/ul/ol/dl/bq/code/headers/',callback);
+		}
+	,loadContent://The URL needs to be the same domain, or support CORS
+		function(contenturl,callback){
+var			self	=	this;
+			jQuery.ajax({
+				type:'GET',
+				url:contenturl,
+				dataType:'text',
+				async:true,
+				success:function(data){
+					this.findContent().html(data);
+					if (jQuery.type(callback)==="function")
+						callback();
+				}
+			});
+		}
 	,setStatusMsg: function(html,showfor){//If showfor set to 0 or negative shows until the next message is set
 		this.winDoge.setStatusMsg(html,showfor);
 	}

@@ -1,0 +1,8 @@
+<project default="deploy" basedir=".">
+	<property environment="env"/>
+	<target name="deploy" description="Calls the GruntBuild from Eclipse">
+		<sequential>
+			<exec executable="grunt.cmd" osfamily="winnt"></exec>
+		</sequential>
+	</target>
+</project>
