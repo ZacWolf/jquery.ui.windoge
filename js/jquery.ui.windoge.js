@@ -540,6 +540,22 @@ var			elh		=	this.winDiv.height();
 					.fadeOut('fast')
 			return this;
 		}
+	,loadContent://The URL needs to be the same domain, or support CORS
+		function(contenturl,intoselector,callback){
+			if (contentwindow.currenttopic!==contentID){
+				jQuery.ajax({
+					type:'GET',
+					url:contenturl,
+					dataType:'text',
+					async:true,
+					success:function(data){
+						intoselector.html(data);
+						if (jQuery.type(callback)==="function")
+							callback();
+					}
+				});
+			}
+		}
 }
 
 jQuery.widget( "winDoge.window", {
