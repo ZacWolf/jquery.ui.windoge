@@ -138,7 +138,7 @@ var					restore		=
 						}
 var					minimize	=
 						function(event,ui){
-							jQuery('#windoge-minimizedock ul').append('<li id="'+self.id+'-min"><a><em><span>'+self.options.header+'</span></em><img src="'+self.options.winlogo+'" /></a></li>');
+							jQuery('#windoge-minimizedock ul').append('<li id="'+self.id+'-min"><a><em><span>'+self.options.winheader+'</span></em><img src="'+self.options.winlogo+'" /></a></li>');
 							jQuery('#'+self.id+'-min img').one('click',restore)
 							self.winDiv
 								.effect(
@@ -228,7 +228,7 @@ var					minimize	=
 		self.id	=	self.winDiv.attr('id');
 var		topbar	=	jQuery(	'<div id="'+self.id+'topbar" class="windogebar'+(self.options.winroundedcorners?' rounded'+self.options.winroundedcorners+' topleft topright':'')+'">'+
 							'<span id="'+self.id+'barheader" class="header'+(self.options.winlogoshow?'':' nologo')+'">'
-								+self.options.header+
+								+self.options.winheader+
 							'</span>'+
 							'<div class="icons'+(self.options.winroundedcorners?' rounded'+self.options.winroundedcorners:'')+'">'+
 								'<div class="icon minimize"></div>'+
@@ -356,7 +356,8 @@ winDoge.prototype	=	{
 	winDiv:undefined
 	,id:undefined
 	,options:{}
-	,_defaults:{'winlogo':'minimized-icon.png'
+	,_defaults:{'winheader':''
+				,'winlogo':'minimized-icon.png'
 				,'winlogoshow':true
 				,'winlogodropshadow':true
 				,'winroundedcorners':'5'
