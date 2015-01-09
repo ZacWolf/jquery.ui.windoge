@@ -565,7 +565,7 @@ jQuery.widget( "winDoge.window", {
 				paragraphs=5;
 			this.loadContent('http://www.corsproxy.com/loripsum.net/api/'+paragraphs+'/medium/decorate/link/ul/ol/dl/bq/code/headers/',callback);
 		}
-	,loadContent://The URL needs to be the same domain, or support CORS
+	,loadContent://The URL needs to be the same domain, or support CORS (http://www.corsproxy.com)
 		function(contenturl,callback){
 var			self	=	this;
 			jQuery.ajax({
@@ -574,7 +574,7 @@ var			self	=	this;
 				dataType:'text',
 				async:true,
 				success:function(data){
-					this.findContent().html(data);
+					self.findContent().html(data);
 					if (jQuery.type(callback)==="function")
 						callback();
 				}
