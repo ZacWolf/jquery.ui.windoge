@@ -338,7 +338,7 @@ var			contentdiv	=	jQuery(self.options.contentdiv).detach();
 		
 		if (self.options.winpersistposition){
 			if (!navigator.cookieEnabled){
-				self.winDiv.setStatusMsg("<span style='color:#888888;font-weight:bold;'>Cookies not allowed, reseting to initial position and size.</span>")
+				self.setStatusMsg("<span style='color:#888888;font-weight:bold;'>Cookies not allowed, reseting to initial position and size.</span>")
 			} else {
 var				pos,size;
 				eval("pos="+privatefunctions._readCookie("windoge-"+self.id+"-pos"));
