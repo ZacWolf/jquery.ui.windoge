@@ -1,4 +1,4 @@
-/*! jquery.ui.windoge - v0.1.0 - 2015-01-09
+/*! jquery.ui.windoge - v0.1.0 - 2016-06-28
  *
  * Adds draggable, resizable, maximizable, and minimizable windows to your site
  *
@@ -233,6 +233,7 @@ var		topbar	=	jQuery(	'<div id="'+self.id+'topbar" class="windogebar'+(self.opti
 							'<div class="icons'+(self.options.winroundedcorners?' rounded'+self.options.winroundedcorners:'')+'">'+
 								'<div class="icon minimize"></div>'+
 								'<div class="icon maximize"></div>'+
+								(self.option.close?'<div class="icon close"></div>':'')+
 							'</div>'+
 						'</div>')
 						.appendTo(self.winDiv);
@@ -324,6 +325,8 @@ var									h			=	resize_o.top - windoge_o.top
 						});
 					}
 				)
+			.click()
+			;
 		middle.css({'top':topbar.outerHeight(),'bottom':bttmbar.outerHeight()});
 		
 		if (self.options.contentdiv){
