@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 					' * Adds draggable, resizable, maximizable, and minimizable windows to your site\n'+
 					' *\n'+
 					' * <%= pkg.repository.url %>\n'+
-					' * Copyright (c) 2014 <%= pkg.author.name %> \<<%= pkg.author.email %>\> [<%= pkg.author.url %>]\n'+
+					' * Copyright (c) 2014-2016 <%= pkg.author.name %> \<<%= pkg.author.email %>\> [<%= pkg.author.url %>]\n'+
 					' * Licensed under <%= pkg.license %>\n'+
 					' */'
 			},

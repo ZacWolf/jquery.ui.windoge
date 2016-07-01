@@ -15,6 +15,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+.tern-project
 
 # External tool builders
 .externalToolBuilders/
