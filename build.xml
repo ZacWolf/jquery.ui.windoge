@@ -2,7 +2,7 @@
 	<property environment="env"/>
 	<target name="build" description="Calls the GruntBuild from Eclipse">
 		<sequential>
-			<exec executable="${env.NODE_HOME}/grunt.cmd" osfamily="winnt">
+			<exec executable="${env.NODE_HOME}/grunt.cmd" osfamily="winnt" failonerror="true">
 
 			</exec>
 		</sequential>
