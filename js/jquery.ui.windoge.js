@@ -458,9 +458,9 @@ var			min		=	parseInt(jQuery(group[0]).css("zIndex"), 10) || 0;
 			jQuery(this).css("zIndex", (min + group.length));
 		}
 	,findContent:function(){
-		if (this.winDoge.winDiv.find('.windogecontentinner').length>0)
-			return this.winDoge.winDiv.find('.windogecontentinner')
-		return this.winDoge.winDiv.find('.windogecontent');
+		if (this.winDiv.find('.windogecontentinner').length>0)
+			return this.winDiv.find('.windogecontentinner')
+		return this.winDiv.find('.windogecontent');
 	}
 	,generateLoremIpsom: 
 		function(paragraphs,callback){
