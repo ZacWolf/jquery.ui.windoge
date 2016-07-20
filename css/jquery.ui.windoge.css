@@ -1,4 +1,4 @@
-/*! jquery.ui.windoge - v0.1.0 - 2016-07-07
+/*! jquery.ui.windoge - v0.1.0 - 2016-07-19
  *
  * Adds draggable, resizable, maximizable, and minimizable windows to your site
  *
@@ -6,6 +6,13 @@
  * Copyright (c) 2014-2016 Zac Morris <zac@zacwolf.com> [http://www.zacwolf.com]
  * Licensed under GPL-3.0
  */
+#windoge-pane{
+	position:fixed;
+	top:0px;
+	left:0px;
+	bottom:0px;
+	right:0px;
+}
 .windropshadow{
 	box-shadow:5px 5px 5px rgba(0,0,0,.5);
 }
