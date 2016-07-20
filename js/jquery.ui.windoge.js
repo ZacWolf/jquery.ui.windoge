@@ -129,10 +129,10 @@ var				contentdiv	=	jQuery(this.options.contentdiv).detach();
 					self.setStatusMsg("<span style='color:#888888;font-weight:bold;'>Cookies not allowed, reseting to initial position and size.</span>")
 				} else {
 var					pos,size;
-					eval("pos="+_readCookie("windoge-"+this.id+"-pos"));
+					eval("pos="+self._readCookie("windoge-"+this.id+"-pos"));
 					if (pos!=null)
 						this.windiv.css(pos);
-					eval("size="+_readCookie("windoge-"+this.id+"-size"));
+					eval("size="+self._readCookie("windoge-"+this.id+"-size"));
 					if (size!=null){
 						this.windiv.width(size.width);
 						this.windiv.height(size.height);
