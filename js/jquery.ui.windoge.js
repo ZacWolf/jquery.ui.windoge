@@ -101,7 +101,7 @@ var			winlogo	=	(this.options.winlogoshow
 				.data('resizewidth',0)
 				.data('resideheight',0)
 				.draggable({cursor:'move'
-							,containment:'window'
+							,containment:'#windoge-pane'
 							,scroll:false
 							,handle:jQuery('.windogebar')
 							,stack: ".windoge"
