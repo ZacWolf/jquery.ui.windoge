@@ -77,23 +77,23 @@ var			self			=	this;
 					self.windiv.data(attr,val);
 			})
 var			topbar	=	jQuery(	'<div id="'+this.id+'topbar" class="windogebar'+(this.options.winroundedcorners?' rounded'+this.options.winroundedcorners+' topleft topright':'')+'">'+
-								'<span id="'+this.id+'barheader" class="header'+(this.options.winlogoshow?'':' nologo')+'">'
-									+this.options.winheader+
-								'</span>'+
-								'<div class="icons'+(this.options.winroundedcorners?' rounded'+this.options.winroundedcorners:'')+'">'+
-									'<div class="icon minimize"></div>'+
-									'<div class="icon maximize"></div>'+
-									(this.options.winclosable?'<div class="icon close"></div>':'')+
-								'</div>'+
-							'</div>')
+									'<span id="'+this.id+'barheader" class="header'+(this.options.winlogoshow?'':' nologo')+'">'
+										+this.options.winheader+
+									'</span>'+
+									'<div class="icons'+(this.options.winroundedcorners?' rounded'+this.options.winroundedcorners:'')+'">'+
+										'<div class="icon minimize"></div>'+
+										'<div class="icon maximize"></div>'+
+										(this.options.winclosable?'<div class="icon close"></div>':'')+
+									'</div>'+
+								'</div>')
 							.appendTo(this.windiv);
 var			bttmbar	=	jQuery(	'<div id='+this.id+'bottombar" class="windogestatus'+(this.options.winroundedcorners?' rounded bottomleft bottomright':'')+'">'+
-								'<div id="'+this.id+'status" class="statusmsg"></div>'+
-								'<div class="resizeicon"></div>'+
-							'</div>')
+									'<div id="'+this.id+'status" class="statusmsg"></div>'+
+									'<div class="resizeicon"></div>'+
+								'</div>')
 							.appendTo(this.windiv);
 var			winlogo	=	(this.options.winlogoshow
-						?jQuery(	'<img id="'+this.id+'logo" class="logo'+(this.options.winlogodropshadow?' dropshadow':'')+'" src="'+this.options.winlogo+'" />')
+						?jQuery('<img id="'+this.id+'logo" class="logo'+(this.options.winlogodropshadow?' dropshadow':'')+'" src="'+this.options.winlogo+'" />')
 							.appendTo(this.windiv)
 						:""
 						);
