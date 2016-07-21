@@ -23,6 +23,9 @@ jQuery.widget( "winDoge.window", {
 					 	 ,'height':'480px'
 						 ,'min-width':'350px'
 						 ,'min-height':'200px'
+						 ,'position':'absolute'
+						 ,'top':'0'
+						 ,'left':'0'
 					}
 				,'on':{	'maximize':[]
 						,'maxrestore':[]
@@ -88,23 +91,22 @@ var			bttmbar	=	jQuery(	'<div id='+this.id+'bottombar" class="windogestatus'+(th
 								'<div id="'+this.id+'status" class="statusmsg"></div>'+
 								'<div class="resizeicon"></div>'+
 							'</div>')
-							.appendTo(this.windiv);		
-var			middle	=	jQuery(	'<div id="'+this.id+'middle" class="windogemiddle"></div>')
-							.appendTo(this.windiv)
+							.appendTo(this.windiv);
 var			winlogo	=	(this.options.winlogoshow
 						?jQuery(	'<img id="'+this.id+'logo" class="logo'+(this.options.winlogodropshadow?' dropshadow':'')+'" src="'+this.options.winlogo+'" />')
 							.appendTo(this.windiv)
 						:""
-						)	;
+						);
 			this.windiv
 				.data('resizestart',{})
 				.data('resizewidth',0)
 				.data('resideheight',0)
+				.appendTo('#windoge-pane')
 				.draggable({cursor:'move'
-							,containment:'#windoge-pane'
+							,containment:"parent"
 							,scroll:false
-							,handle:jQuery('.windogebar')
-							,stack: ".windoge"
+							,handle:jQuery('.windogebar',this.windiv)
+//							,stack: ".windoge"  //only brings to top on drag, not on click so wrote method _bringToTop that is triggered on mousedown
 							,stop:
 								function(event,ui){
 									if (self.options.winpersistposition){
@@ -112,9 +114,11 @@ var			winlogo	=	(this.options.winlogoshow
 									}
 								}
 							})
-				.appendTo(jQuery('#windoge-pane'))
 				;
-			middle.css({'top':topbar.outerHeight(),'bottom':bttmbar.outerHeight()});
+var			middle	=	jQuery(	'<div id="'+this.id+'middle" class="windogemiddle"></div>')
+						.css({'top':topbar.outerHeight(),'bottom':bttmbar.outerHeight()})
+						.appendTo(this.windiv);
+
 			if (this.options.contentdiv){
 var				contentdiv	=	jQuery(this.options.contentdiv).detach();
 				if (contentdiv.find('.windogecontent').length==0)
@@ -189,7 +193,7 @@ var										h			=	resize_o.top - windoge_o.top
 						}
 					)
 					.end()//reset after the last find
-				.on('click',self._bringToTop)
+				.on('mousedown',self._bringToTop)
 				.click()
 				;
 			return self;
