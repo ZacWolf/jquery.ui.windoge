@@ -1,8 +1,8 @@
 {
   "name": "jquery.ui.windoge",
   "version": "0.1.0",
-  "description": "JavaScript windows manager for your UI. It enables you to add windows with maximize/restore/minimize capabilities. Windows are minimized into an icon dock.",
-  "main": ["dist/jquery.ui.windoge.js","dist/jquery.ui.windoge.css"],
+  "description": "JavaScript windows manager for your UI enables adding windows with maximize/restore/minimize into an icon dock.",
+  "main": ["js/jquery.ui.windoge.js","css/jquery.ui.windoge.css"],
   "ignore":"node_modules",
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   "license": "GPL-3.0",
   "homepage": "https://github.com/ZacWolf/jquery.ui.windoge",
   "devDependencies": {
-    "jquery": "~1.11.1"
-	"jquery-ui": "~1.11.2"
+    "jquery": "~3.2.1",
+	"jquery-ui": "~1.12"
   }
 }
