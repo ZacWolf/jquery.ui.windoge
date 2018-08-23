@@ -9,12 +9,13 @@ npm install zacwolf/jquery.ui.windoge
 ```
 
 ## Demo
-A full demo is located in the "Windoge Demo" folder.  
-Open the index.html file to see the Windoge demo.
+A full demo is located via:
+https://zacwolf.github.io/jquery.ui.windoge/
 
 =============================  
-####(Attribution) CSS Dock v2
+#### (Attribution) CSS Dock v2
+<cite>
 The dock that this addon uses is "CSS Dock v2" by Michael Hüneburg 
-http://michaelhue.com/cssdock/
+</cite>
 
 The source code for CSS Dock is at: https://github.com/michaelhue/cssdock
