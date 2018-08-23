@@ -1,0 +1,574 @@
+<style>
+.shell{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font: normal normal 15px/1.5 Georgia, Palatino,” Palatino Linotype”, Times, “Times New Roman”, serif;
+	color: #544943;
+	-webkit-font-smoothing: antialiased;
+}
+/* STYLES */
+
+div.shell {
+  display: block;
+  width: 670px;
+  margin: 0 auto;
+}
+
+a#forkme_banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 138px;
+  height: 138px;
+  display: block;
+  background: transparent url(images/fork-sprite.png) 0 0 no-repeat;
+  text-indent: -9000px;
+  z-index: 3;
+}
+
+a#forkme_banner:hover {
+  background-position: 0 -138px;
+}
+
+/* header */
+.shell header {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  max-width: 600px;
+  top: 38px;
+}
+
+.shell header span.ribbon-inner {
+  position: relative;
+  display: block;
+  background-color: #cd596b;
+  border: 4px solid #7c334f;
+  padding: 2px;
+  z-index: 1;
+}
+
+.shell header span.left-tail, header span.right-tail {
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 105px;
+  background: transparent url(images/ribbon-tail-sprite.png) 0 0 no-repeat;
+  position: absolute;
+  bottom: -37px;
+  z-index: 0;
+}
+
+.shell header span.left-tail {
+  background-position: 0 0;
+  left: -31px;
+}
+
+.shell header span.right-tail {
+  background-position: -56px 0;
+  right: -31px;
+}
+
+.shell header h1 {
+  background-color: #7c334f;
+  font-size: 2.5em;
+  font-weight: 800;
+  font-style: normal;
+  text-transform: uppercase;
+  color: #ece4d8;
+  text-align: center;
+  line-height:1;
+  padding: 14px 20px 0;
+	margin: 0;
+	border: 0;
+	vertical-align: baseline;
+}
+
+.shell header h2 {
+  background-color: #7c334f;
+  font: bold italic .85em/1.5 Georgia, Times, “Times New Roman”, serif;
+  color: #e69b95;
+  padding-bottom: 14px;
+  margin-top: -3px;
+  text-align: center;
+}
+
+.shell section#downloads,
+.shell div#no-downloads {
+  position: relative;
+  display: block;
+  height: 197px;
+  width: 550px;
+  padding-bottom: 150px;
+  margin: -91px auto -150px;
+  z-index: 1;
+  background: transparent url(images/bg-ramp.png) center 171px no-repeat;
+}
+
+.shell div#no-downloads span.inner {
+  display: block;
+  position: relative;
+  height: 197px;
+  width: 550px;
+  background: transparent url(images/download-sprite.png) 0 0 no-repeat;
+}
+
+.shell section#downloads a {
+  display: block;
+  position: relative;
+  height: 67px;
+  width: 275px;
+  padding-top: 130px;
+  background: transparent url(images/download-sprite.png) 0 0 no-repeat;
+  text-align: center;
+  line-height: 1;
+  color: #fff;
+  font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+  font-weight: 800;
+  font-size: 1.3em;
+}
+
+.shell section#downloads a:hover {
+  text-decoration: none;
+}
+
+.shell section#downloads a em {
+  font: bold italic 12px/1 Georgia, Times, “Times New Roman”, serif;
+  color: #83b7da;
+  display: block;
+}
+
+.shell section#downloads a.zip {
+  float: left;
+  background-position: 0 0;
+}
+
+.shell section#downloads a.tgz {
+  float: right;
+  background-position: -275px 0;
+}
+
+.shell section#downloads a.zip:hover {
+  background-position: 0 -197px;
+}
+
+.shell section#downloads a.tgz:hover {
+  background-position: -275px -197px;
+}
+
+.shell span.banner-fix {
+  background: transparent url(images/download-fallback-bg.png) center top no-repeat;
+  display: block;
+  height: 19px;
+  position: absolute;
+  width: 670px;
+  top: 19px;
+}
+
+.shell section#main_content {
+  z-index: 2;
+  padding: 20px 82px 0;
+  min-height:185px;
+  position:relative;
+}
+
+/* footer */
+
+.shell footer {
+  padding-top: 104px;
+  margin: -94px auto 40px;
+  max-width: 560px;
+  text-align: center;
+}
+
+.shell footer span.ribbon-outer {
+  display: block;
+  position: relative;
+  border-bottom: 2px solid #bdb6ad;
+}
+
+.shell footer span.ribbon-inner {
+  position: relative;
+  display: block;
+  background-color: #cd596b;
+  border: 2px solid #7c334f;
+  padding: 1px;
+  z-index: 1;
+}
+
+.shell footer p {
+  font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+  font-weight: bold;
+  font-size: .8em;
+  color: #8b786f;
+}
+
+.shell footer a {
+  color: #cd596b;
+}
+
+.shell footer span.ribbon-inner p {
+  background-color: #7c334f;
+  margin: 0;
+  color: #e69b95;
+  font: bold italic 12px/1 Georgia, Times, “Times New Roman”, serif;
+  padding-bottom:4px;
+}
+
+.shell footer span.ribbon-inner a {
+  position: relative;
+  bottom: -1px;
+  color: #7eb0d2;
+  font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 1.2em;
+}
+
+.shell footer span.ribbon-inner a:hover {
+  color: #7eb0d2;
+}
+
+.shell footer span.left-tail, footer span.right-tail {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 29px;
+  background: transparent url(images/small-ribbon-tail-sprite.png) 0 0 no-repeat;
+  position: absolute;
+  bottom: 5px;
+  z-index: 0;
+}
+
+.shell footer span.left-tail {
+  background-position: 0 0;
+  left: -11px;
+}
+
+.shell footer span.right-tail {
+  background-position: -18px 0;
+  right: -11px;
+}
+
+.shell footer span.octocat {
+  background: transparent url(images/octocat.png) 0 0 no-repeat;
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.shell a, .shell a:hover {
+  color: #417090;
+}
+
+.shell a {
+  text-decoration: none;
+}
+
+.shell a:hover {
+  text-decoration: underline;
+}
+
+.shell h1,.shell h2,.shell h3,.shell h4,.shell h5,.shell h6 {
+  font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+  font-weight: bold;
+}
+
+.shell p {
+  margin: .7em 0;
+}
+
+.shell strong {
+  font-weight: bold;
+}
+
+.shell em {
+  font-style: italic;
+}
+
+.shell ol {
+  margin: .7em 0;
+  list-style-type: decimal;
+  padding-left: 1.35em;
+}
+
+.shell ul {
+  margin: .7em 0;
+  padding-left: 1.35em;
+}
+
+.shell ul li {
+  padding-left: 10px;
+  background: transparent url(images/chevron.png) left 6px no-repeat;
+}
+
+.shell blockquote {
+  font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+  margin: 20px 0;
+  color: #8b786f;
+  padding-left: 1.35em;
+  background: transparent url('images/blockquote-gfx.png') 0 4px no-repeat;
+}
+.shell hr {
+  border: none;
+  outline: none;
+  height: 18px;
+  background: transparent url('images/hr.png') center center repeat-x;
+  margin: 0 0 20px;
+}
+
+.shell code {
+  background: #fff6e9;
+  font: normal normal .8em/1.7 "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+  padding: 0 5px 1px;
+}
+
+.shell pre {
+  margin: 0;
+  padding: .7em;
+  background: #fff6e9;
+  border-bottom: 2px solid #bdb6ad;
+  font: normal normal .9em/1.7 "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+  overflow: auto;
+}
+
+.shell pre code {
+  padding: 0;
+}
+
+.shell table {
+  background: #fff6e9;
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-bottom: 2px solid #bdb6ad;
+  margin: 10px 0;
+}
+
+.shell tr {
+  display: table-row;
+}
+
+.shell th {
+  display: table-cell;
+  padding: 2px 10px;
+  border: solid #ece4d8;
+  border-width: 0 2px 2px 0;
+  color: #cd596b;
+  font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+  font-weight: bold;
+  font-size: .85em;
+}
+
+.shell td {
+  display: table-cell;
+  padding: 0 .7em;
+  border: solid #ece4d8;
+  border-width: 0 2px 2px 0;
+}
+
+.shell td:last-child, th:last-child {
+  border-right: none;
+}
+
+.shell tr:last-child td {
+  border-bottom: none;
+}
+
+.shell dl {
+  margin: .7em 0 20px;
+}
+
+.shell dt {
+  font-family: 'Open Sans', Myriad, Calibri, sans-serif;
+  font-weight: bold;
+}
+
+.shell dd {
+  padding-left: 1.35em;
+}
+
+.shell dd p:first-child {
+  margin-top: 0;
+}
+
+/* Content based headers */
+
+#main_content > .header-level-1:first-child,
+#main_content > .header-level-2:first-child,
+#main_content > .header-level-3:first-child,
+#main_content > .header-level-4:first-child,
+#main_content > .header-level-5:first-child,
+#main_content > .header-level-6:first-child {
+  margin-top: 0;
+}
+
+.header-level-1 {
+  font-size: 1.85em;
+  border-bottom: .2em double #d3ccc1;
+  color: #7c334f;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.2;
+  padding-bottom: 10px
+}
+
+.header-level-2 {
+  font-size: 1.58em;
+  color: #7c334f;
+  margin: 0;
+  margin-top:10px;
+  border-bottom: .1em solid #D3CCC1;
+  line-height: 1.2;
+  padding-bottom: 10px
+}
+
+.header-level-3 {
+  margin: 20px 0 10px;
+  font-size: 1.45em;
+}
+
+.header-level-4 {
+  margin: .6em 0;
+  font-size: 1.2em;
+  color: #cd596b;
+}
+
+.header-level-5 {
+  margin: .7em 0;
+  font-size: 1em;
+  color: #8b786f;
+}
+
+.header-level-6 {
+  margin: .8em 0;
+  font-size: .85em;
+  font-style: italic;
+}
+.highlight  { background: #ffffff; }
+.highlight .c { color: #999988; font-style: italic } /* Comment */
+.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.highlight .k { font-weight: bold } /* Keyword */
+.highlight .o { font-weight: bold } /* Operator */
+.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #aa0000 } /* Generic.Error */
+.highlight .gh { color: #999999 } /* Generic.Heading */
+.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #555555 } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold; } /* Generic.Subheading */
+.highlight .gt { color: #aa0000 } /* Generic.Traceback */
+.highlight .kc { font-weight: bold } /* Keyword.Constant */
+.highlight .kd { font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #009999 } /* Literal.Number */
+.highlight .s { color: #d14 } /* Literal.String */
+.highlight .na { color: #008080 } /* Name.Attribute */
+.highlight .nb { color: #0086B3 } /* Name.Builtin */
+.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
+.highlight .no { color: #008080 } /* Name.Constant */
+.highlight .ni { color: #800080 } /* Name.Entity */
+.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
+.highlight .nn { color: #555555 } /* Name.Namespace */
+.highlight .nt { color: #000080 } /* Name.Tag */
+.highlight .nv { color: #008080 } /* Name.Variable */
+.highlight .ow { font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #009999 } /* Literal.Number.Float */
+.highlight .mh { color: #009999 } /* Literal.Number.Hex */
+.highlight .mi { color: #009999 } /* Literal.Number.Integer */
+.highlight .mo { color: #009999 } /* Literal.Number.Oct */
+.highlight .sb { color: #d14 } /* Literal.String.Backtick */
+.highlight .sc { color: #d14 } /* Literal.String.Char */
+.highlight .sd { color: #d14 } /* Literal.String.Doc */
+.highlight .s2 { color: #d14 } /* Literal.String.Double */
+.highlight .se { color: #d14 } /* Literal.String.Escape */
+.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
+.highlight .si { color: #d14 } /* Literal.String.Interpol */
+.highlight .sx { color: #d14 } /* Literal.String.Other */
+.highlight .sr { color: #009926 } /* Literal.String.Regex */
+.highlight .s1 { color: #d14 } /* Literal.String.Single */
+.highlight .ss { color: #990073 } /* Literal.String.Symbol */
+.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #008080 } /* Name.Variable.Class */
+.highlight .vg { color: #008080 } /* Name.Variable.Global */
+.highlight .vi { color: #008080 } /* Name.Variable.Instance */
+.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+
+.type-csharp .highlight .k { color: #0000FF }
+.type-csharp .highlight .kt { color: #0000FF }
+.type-csharp .highlight .nf { color: #000000; font-weight: normal }
+.type-csharp .highlight .nc { color: #2B91AF }
+.type-csharp .highlight .nn { color: #000000 }
+.type-csharp .highlight .s { color: #A31515 }
+.type-csharp .highlight .sc { color: #A31515 }
+
+
+</style>
+<div class="shell">
+  <header>
+	<h1>
+	  <span class="ribbon-outer">Jquery.ui.windoge</span>
+	</h1>
+	<h2>
+	  <span class="ribbon-outer">Add windows to your UI. Windows with maximize/restore minimize capabilities,<br />
+	  and that minimizes into an icon dock.</span>
+	</h2>
+  </header>
+  <section id="downloads">
+	<span class="inner">
+	  <a href="https://github.com/ZacWolf/jquery.ui.windoge/zipball/master" class="zip">
+	  <em>download</em> .ZIP</a>
+	  <a href="https://github.com/ZacWolf/jquery.ui.windoge/tarball/master" class="tgz">
+	  <em>download</em> .TGZ</a>
+	</span>
+  </section>
+  <section id="main_content">
+	<blockquote>
+	  <p>jquery.ui.windoge is a JavaScript windows manager for your UI.</p>
+	</blockquote>
+	<h1 class="header-level-1">
+	<a href="http://gruntjs.com/" target="_blank">
+	  <img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt" />
+	</a></h1>
+	<h2 class="header-level-2">
+	<a id="install" class="anchor" href="#install" aria-hidden="true"></a>Install</h2>
+	<div class="highlight highlight-shell">
+	  <pre>bower install zacwolf/jquery.ui.windoge</pre>
+	</div>
+	<br />
+	<hr />
+	<h4 class="header-level-3">
+	<a id="attribution-css-dock-v2" class="anchor" href="#attribution-css-dock-v2" aria-hidden="true"></a>(Attribution) CSS
+	Dock v2</h4>
+	<p>The dock that this addon uses is &quot;CSS Dock v2&quot; by Michael Hüneburg 
+	<a href="http://michaelhue.com/cssdock/">http://michaelhue.com/cssdock/</a></p>
+	<p>The source code for CSS Dock is at: 
+	<a href="https://github.com/michaelhue/cssdock">https://github.com/michaelhue/cssdock</a></p>
+  </section>
+  <footer>
+	<p>
+	  <span class="ribbon-outer">this project by 
+	  <a href="https://github.com/ZacWolf">ZacWolf</a> can be found on 
+	  <a href="https://github.com/ZacWolf/jquery.ui.windoge">GitHub</a></span>
+	</p>
+  </footer>
+</div>

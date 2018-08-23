@@ -1,0 +1,8 @@
+<body itemscope itemtype="http://schema.org/Product">
+	<h1 itemprop="name">jquery.ui.windoge</h1>
+	<p itemprop="description">jQuery-UI windows-manager</p>
+	<meta itemprop="alternateName">Windoge</meta>
+	<img itemprop="logo" src="https://zacwolf.github.io/jquery.ui.windoge/images/minimized-icon2.png" />
+	Project Homepage:<a href="https://zacwolf.github.io/jquery.ui.windoge/" itemprop="url">zacwolf.github.io/jquery.ui.windoge/</a><br />
+	Zac's Email:<a href="mailto:zac@zacwolf.com" itemprop="owns">zac@zacwolf.com</a><br />
+</body>

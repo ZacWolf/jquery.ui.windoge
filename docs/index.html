@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta>
+		<meta name="author" content="Zac Morris" />
+		<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1">
+		<meta name="msapplication-config" content="none" />
+		<title>jquery.ui.windoge</title>
+		
+		<meta name="author" content="Zac Morris" />
+		<meta name="description" content="jQuery UI based windows-manager" />
+		<meta name="keywords" content="jQuery jQuery-UI doge windows-manager html5 css3" />
+		
+		<!-- Twitter Card data -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="jquery.ui.windoge" />
+		<meta name="twitter:description" content="jQuery-UI based windows-manager" />
+		<meta name="twitter:creator" content="@zacwolf" />
+		<meta name="twitter:url" content="https://zacwolf.github.io/jquery.ui.windoge/" />
+		<meta name="twitter:image" content="https://zacwolf.github.io/jquery.ui.windoge/images/minimized-icon2.png" />
+		
+		<!--  OG data -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="jquery.ui.windoge" />
+		<meta property="og:author" content="Zac Morris" />
+		<meta property="og:description" content="jQuery-UI based windows-manager" />
+		<meta property="og:url" content="https://zacwolf.github.io/jquery.ui.windoge/" />
+		<meta property="og:link" content="https://zacwolf.github.io/jquery.ui.windoge/" />
+		<meta property="og:site_name" content="jquery.ui.windoge"/>
+		<meta property="og:image" content="https://zacwolf.github.io/jquery.ui.windoge/images/minimized-icon2.png" />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="100" />
+		<meta property="og:image:height" content="100" />
+
+
+<!-- Required -->	
+	<!-- //jquery.org -->
+		<script type='text/javascript' src="//code.jquery.com/jquery-3.0.0.min.js"></script>
+		<script type='text/javascript' src="//cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/normalize/3.0.3/normalize.css" />
+
+<!-- Optional -->	
+	<!-- //touchpunch.furf.com/ -->
+		<script type='text/javascript' src="//cdn.jsdelivr.net/jquery.ui.touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+	<!-- https://github.com/jquery/jquery-mousewheel -->
+		<script type='text/javascript' src="//cdn.jsdelivr.net/mousewheel/3.1.9/jquery.mousewheel.min.js"></script>
+	<!-- https://github.com/malihu/malihu-custom-scrollbar-plugin -->
+		<script type='text/javascript' src="//cdn.jsdelivr.net/jquery.mcustomscrollbar/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+	<!-- https://fonts.googleapis.com -->
+		<script src="//cdn.jsdelivr.net/webfontloader/1.5.3/webfont.js"></script>
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,500|Open+Sans:300,400,600,700,800|Handlee:400" />
+	<!--[if gte IE 9]>
+		<style type="text/css">
+			.gradient {
+				filter:none;
+			}
+		</style>
+	<![endif]-->
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/fontawesome/4.2.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.mcustomscrollbar/3.1.5/jquery.mCustomScrollbar.min.css" />
+
+<!-- Windoge -->
+		<script type="text/javascript" src="//rawgit.com/ZacWolf/jquery.ui.windoge/master/js/jquery.ui.windoge.js"></script>	
+		<link rel="stylesheet" type="text/css" href="//rawgit.com/ZacWolf/jquery.ui.windoge/master/css/jquery.ui.windoge.css">
+
+<!-- Demo Page -->
+		<style>
+			body{/*for the demo page only*/
+				background-image:url('images/background.png');
+				background-repeat: no-repeat;
+				background-position:left top;
+				background-origin:content-box;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				font-family:'Comic Sans MS',cursive;
+				overflow:hidden;
+			}
+		</style>
+
+	</head>
+	<body>
+		<a href="https://github.com/ZacWolf/jquery.ui.windoge"><img src="images/corner.png" style="position:fixed;right:0;top:0;"></a>
+		<script>
+var		win1,win2;
+			$( document ).ready(
+				function(){
+					win1 = $( "<div id='win1'></div>" )
+								.window(
+									{'winheader':'About WinDoge 8'
+									,'winlogo':'images/minimized-icon.png'
+									,'winlogoshow':true
+									,'winlogodropshadow':true
+									,'winroundedcorners':5
+									,'windropshadow':true
+									,'winpersistposition':true
+									,'style':{	'min-width':'300px'
+												,'min-height':'200px'
+												,'top':'50px'
+												,'left':'50px'
+												,'background-color':'#e4d9a6'
+											 }
+									,'contentdiv':'#aboutcontent'
+									});
+					win2 = $( "<div id='win2'></div>" )
+								.window(
+									{'winheader':'Project Info'
+									,'winlogo':'images/minimized-icon2.png'
+									,'winlogoshow':false
+									,'windropshadow':false
+									,'winpersistposition':true
+									,'style':{	'min-width':'685px'
+												,'min-height':'275px'
+												,'top':'10px'
+												,'left':'10px'
+												,'height':'330px'
+												,'background-color':'#e4d9a6'
+											 }
+									})
+								.window("loadContent","project.html")
+								.window("setStatusMsg","Test of a status msg that fades after 7 seconds",7000);
+					$('.windogecontent')//[Optional]Replace all the main "content" window area with the mCustomScrollbar
+						.mCustomScrollbar({
+							theme:'dark-2'
+							,autoHideScrollbar:false
+							,alwaysShowScrollbar:0
+							,scrollInertia: 100
+							,autoDraggerLength: true
+							,scrollButtons:{enable:true}
+							,advanced:{updateOnContentResize:true}
+							,mouseWheel:{ enable: true, deltaFactor: 25 }
+							,keyboard:{ enable: true }
+						});						
+				}
+			)
+		</script>
+		<div style="display:none;">
+			<div id="aboutcontent">
+				<div class='windogecontentinner' style="margin-left:110px">
+					<p>
+					The WINDOGE 8 project started as a lark. It originated with a <a href="https://www.reddit.com/r/wallpapers/comments/1sa406/windoge_8_hdfix_version_1920x1080/cdvi3p3">post</a>
+					in <a href=https://www.reddit.com/r/wallpapers/">r/wallpapers/</a> on <a href="https://www.reddit.com">Reddit.com</a>.  Someone had created
+					a background in the style of Windows 8<sup>&trade;</sup>, but with Doge from the <a href="//knowyourmeme.com/memes/doge">Doge meme</a>.
+					</p>
+					<p>
+					Originally I created a Windows Theme using these backgrounds and some soundbytes from Portal 2, but then I remembered
+					that I had actually started an HTML5/JS/CSS3 Windows Manager for use in my <a href="//zacwolf.com">website</a>.
+					I developed it as a <a href="//jquery.com">jQuery</a>/<a href="//jquery-ui.com">jQuery-UI</a> addon, and
+					then created an Open Source <a href="//github.com/ZacWolf/jquery.ui.windoge">project</a> for the code hosted on <a href="//github.com">GitHub</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
