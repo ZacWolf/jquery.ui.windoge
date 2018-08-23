@@ -15,6 +15,10 @@
     "url": "https://github.com/ZacWolf/jquery.ui.windoge/issues",
     "email": "zac@zacwolf.com"
   },
+  "dependencies": {
+    "jquery": "~3.2.1",
+    "jquery-ui": "~1.12"
+  },
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^1.1.0",

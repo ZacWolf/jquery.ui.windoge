@@ -1,4 +1,4 @@
-/*! jquery.ui.windoge - v0.1.0 - 2018-01-11
+/*! jquery.ui.windoge - v0.1.0 - 2018-08-23
  *
  * Adds draggable, resizable, maximizable, and minimizable windows to your site
  *
