@@ -8,10 +8,10 @@
 		</sequential>
 	</target>
 	<target name="copy" description="Copies files to zacwolf.com.home project">
-		<copy todir="../zacwolf.com.home/war/jsframeworks/jquery.ui.windoge/css">
+		<copy todir="../zacwolf.com.home/src/main/webapp/jquery.ui.windoge/css">
 			<fileset dir="css"/>
 		</copy>
-		<copy todir="../zacwolf.com.home/war/jsframeworks/jquery.ui.windoge/js">
+		<copy todir="../zacwolf.com.home/src/main/webapp/jquery.ui.windoge/js">
 			<fileset dir="js"/>
 		</copy>
 	</target>
