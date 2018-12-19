@@ -1,0 +1,97 @@
+<html>
+<head>
+		<link rel="stylesheet" href="normalize.css">
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500|Open+Sans:300,400,600,700,800|Handlee:400">
+		<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+		<link rel="stylesheet" href="jquery.mCustomScrollbar.min.css">
+		<link rel="stylesheet" href="jquery.ui.windoge.css">
+		<link rel="stylesheet" href="section.min.css">
+		<link rel="stylesheet" href="zacwolf.min.css">
+</head>
+<body>
+
+<script>
+var		win1,win2;
+			$( document ).ready(
+				function(){
+					win1 = $( "<div id='win1'></div>" )
+								.window(
+									{'winheader':'About WinDoge 8'
+									,'winlogo':'images/minimized-icon.png'
+									,'winlogoshow':true
+									,'winlogodropshadow':true
+									,'winroundedcorners':5
+									,'windropshadow':true
+									,'winpersistposition':true
+									,'style':{	'min-width':'300px'
+												,'min-height':'200px'
+												,'top':'50px'
+												,'left':'50px'
+												,'background-color':'#e4d9a6'
+											 }
+									,'contentdiv':'#aboutcontent'
+									});
+					win2 = $( "<div id='win2'></div>" )
+								.window(
+									{'winheader':'Project Info'
+									,'winlogo':'images/minimized-icon2.png'
+									,'winlogoshow':false
+									,'windropshadow':false
+									,'winpersistposition':true
+									,'style':{	'min-width':'685px'
+												,'min-height':'275px'
+												,'top':'10px'
+												,'left':'10px'
+												,'height':'330px'
+												,'background-color':'#e4d9a6'
+											 }
+									})
+								.window("loadContent","project.html")
+								.window("setStatusMsg","Test of a status msg that fades after 7 seconds",7000);
+					$('.windogecontent')//[Optional]Replace all the main "content" window area with the mCustomScrollbar
+						.mCustomScrollbar({
+							theme:'dark-2'
+							,autoHideScrollbar:false
+							,alwaysShowScrollbar:0
+							,scrollInertia: 100
+							,autoDraggerLength: true
+							,scrollButtons:{enable:true}
+							,advanced:{updateOnContentResize:true}
+							,mouseWheel:{ enable: true, deltaFactor: 25 }
+							,keyboard:{ enable: true }
+						});						
+				}
+			)
+		</script>
+		<div style="display:none;">
+			<div id="aboutcontent">
+				<div class='windogecontentinner' style="margin-left:110px">
+					<p>
+					The WINDOGE 8 project started as a lark. It originated with a <a href="https://www.reddit.com/r/wallpapers/comments/1sa406/windoge_8_hdfix_version_1920x1080/cdvi3p3">post</a>
+					in <a href=https://www.reddit.com/r/wallpapers/">r/wallpapers/</a> on <a href="https://www.reddit.com">Reddit.com</a>.  Someone had created
+					a background in the style of Windows 8<sup>&trade;</sup>, but with Doge from the <a href="//knowyourmeme.com/memes/doge">Doge meme</a>.
+					</p>
+					<p>
+					Originally I created a Windows Theme using these backgrounds and some soundbytes from Portal 2, but then I remembered
+					that I had actually started an HTML5/JS/CSS3 Windows Manager for use in my <a href="//zacwolf.com">website</a>.
+					I developed it as a <a href="//jquery.com">jQuery</a>/<a href="//jquery-ui.com">jQuery-UI</a> addon, and
+					then created an Open Source <a href="//github.com/ZacWolf/jquery.ui.windoge">project</a> for the code hosted on <a href="//github.com">GitHub</a>.
+					</p>
+				</div>
+			</div>
+
+			<div class="winleft">
+				<a href="https://dl.dropboxusercontent.com/u/27151327/_RESUME/zacresume.pdf"><img id="resumeicon" class="resumeicon" src="/images/ICONS/resume.png" style="opacity: 1; bottom: 1px;" data-hasqtip="1"></a>
+				<div class="nav">
+					<span content="about" class="selected">About Me</span>
+					<span content="portfolio">Portfolio</span>
+					<span content="history">History</span>
+					<span content="interests">Interests</span>
+					<span content="philosophy">Philosophy</span>
+					<span content="made">How it's made</span>
+				</div>
+			</div>
+		</div>
+		
+</body>
+</html>
