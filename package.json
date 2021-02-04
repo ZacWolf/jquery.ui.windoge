@@ -16,7 +16,7 @@
     "email": "zac@zacwolf.com"
   },
   "dependencies": {
-    "jquery": "~3.2.1",
+    "jquery": "~3.5.0",
     "jquery-ui": "~1.12"
   },
   "devDependencies": {
