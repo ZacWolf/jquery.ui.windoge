@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "jquery": "~3.5.0",
-    "jquery-ui": "~1.12"
+    "jquery-ui": "~1.13"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
